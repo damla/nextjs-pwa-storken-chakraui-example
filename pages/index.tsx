@@ -1,20 +1,25 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-// import Image from 'next/image'
-import { useTheme as useNextTheme } from 'next-themes'
 import {
-  Container,
-  Button,
-  Input,
+  Box,
+  Flex,
+  Heading,
+  IconButton,
   Spacer,
-  Text,
-  Switch,
-  useTheme
-} from '@nextui-org/react'
+  StackDivider,
+  useColorMode,
+  useColorModeValue,
+  Wrap,
+  WrapItem
+} from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const Home: NextPage = () => {
-  const { setTheme } = useNextTheme()
-  const { isDark, type } = useTheme()
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  const bg = useColorModeValue('purple.100', 'gray.900')
+  const color = useColorModeValue('purple.900', 'gray.100')
+  const icon = useColorModeValue(<MoonIcon color='purple.900' />, <SunIcon />)
 
   return (
     <div>
@@ -24,33 +29,26 @@ const Home: NextPage = () => {
           name='description'
           content='An application developed for my mum to calculate total water price.'
         />
-        <link
-          rel='icon'
-          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>'
-        />
       </Head>
 
-      <Container
-        as='main'
-        display='flex'
-        direction='column'
-        justify='center'
-        alignItems='center'
-        style={{ height: '100vh' }}
-      >
-        <Switch
-          checked={isDark}
-          onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
-        />
-        <Spacer />
-        {/* <Image src='/logo.svg' alt='Vercel Logo' width={200} height={200} /> */}
-        <Spacer />
-        <Text h1>Su Ne Kadar?</Text>
-        <Spacer />
-        <Input clearable labelPlaceholder='Type something' />
-        <Spacer />
-        <Button>Click Me</Button>
-      </Container>
+      <Box as='main' bg={bg} height='100vh'>
+        <Flex as='header'>
+          <Box p='10'>
+            <Heading size='xl' as='h2' color={color}>
+              Su Ne Kadar?
+            </Heading>
+          </Box>
+          <Spacer />
+          <Box p='10'>
+            <IconButton
+              onClick={toggleColorMode}
+              aria-label='Change color mode'
+              icon={icon}
+            />
+          </Box>
+        </Flex>
+        <StackDivider borderColor='gray.200' />
+      </Box>
     </div>
   )
 }

@@ -1,27 +1,22 @@
-import Document, {
-  DocumentContext,
-  Html,
-  Head,
-  Main,
-  NextScript
-} from 'next/document'
-import { CssBaseline } from '@nextui-org/react'
+import Document, { DocumentContext } from 'next/document'
+import { ColorModeScript } from '@chakra-ui/react'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import theme from '../styles/theme'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
 
-    return {
-      ...initialProps,
-      styles: <>{initialProps.styles}</>
-    }
+    return initialProps
   }
 
   render() {
     return (
       <Html lang='en'>
-        <Head>{CssBaseline.flush()}</Head>
+        <Head />
         <body>
+          {/* 👇 Here's the script */}
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>
