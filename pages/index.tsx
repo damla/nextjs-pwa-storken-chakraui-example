@@ -27,6 +27,7 @@ const Home: NextPage = () => {
 
   const bg = useColorModeValue('purple.100', 'gray.900')
   const bgContainer = useColorModeValue('purple.50', 'gray.700')
+  const inputBgColor = useColorModeValue('white', 'none')
   const color = useColorModeValue('purple.900', 'gray.100')
   const icon = useColorModeValue(<MoonIcon color='purple.900' />, <SunIcon />)
   const buttonColorScheme = useColorModeValue('purple', 'blue')
@@ -40,8 +41,8 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <Box as='main' bg={bg} height='100vh'>
-        <Flex as='header' h='10vh'>
+      <Box as='main' bg={bg} minHeight='100vh'>
+        <Flex as='header' minHeight='10vh'>
           <Box p='10'>
             <Heading size='xl' as='h2' color={color}>
               Su Ne Kadar?
@@ -57,10 +58,10 @@ const Home: NextPage = () => {
           </Box>
         </Flex>
         <StackDivider borderColor='gray.200' />
-        <Center h='90vh'>
+        <Center minHeight='90vh'>
           <Container
-            bg={bgContainer}
-            border='1px'
+            bg={{ sm: 'none', md: bgContainer }}
+            border={{ sm: '0', md: '1px' }}
             borderColor='gray.200'
             borderRadius='0.375rem'
             p='4rem'
@@ -72,7 +73,11 @@ const Home: NextPage = () => {
             <FormControl>
               <FormLabel htmlFor='glass'>Cam Şişe</FormLabel>
               <NumberInput size='md' defaultValue={1} max={50} mb='2rem'>
-                <NumberInputField id='glass' type='glass' />
+                <NumberInputField
+                  id='glass'
+                  type='glass'
+                  bgColor={inputBgColor}
+                />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
@@ -80,7 +85,11 @@ const Home: NextPage = () => {
               </NumberInput>
               <FormLabel htmlFor='plastic'>Plastik Şişe</FormLabel>
               <NumberInput size='md' defaultValue={1} max={50} mb='2rem'>
-                <NumberInputField id='plastic' type='plastic' />
+                <NumberInputField
+                  id='plastic'
+                  type='plastic'
+                  bgColor={inputBgColor}
+                />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
