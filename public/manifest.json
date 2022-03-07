@@ -1,8 +1,8 @@
 {
   "name": "Su ne kadar? 💧",
-  "short_name": "💧",
-  "theme_color": "#322659",
-  "background_color": "#322659",
+  "short_name": "Su ne kadar?",
+  "theme_color": "#E9D8FD",
+  "background_color": "#E9D8FD",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
@@ -19,5 +19,5 @@
       "type": "image/png"
     }
   ],
-  "splash_pages": null
+  "splash_pages": "/"
 }
