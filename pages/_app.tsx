@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           sizes='32x32'
         />
         <link rel='apple-touch-icon' href='/icons/apple-touch-icon.png'></link>
-        <meta name='theme-color' content='#322659' />
+        <meta name='theme-color' content='#E9D8FD' />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
