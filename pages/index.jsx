@@ -1,4 +1,5 @@
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
+import Image from 'next/image'
 import Head from 'next/head'
 import {
   Box,
@@ -14,8 +15,10 @@ import {
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import Form from '../components/form'
+import Drop from '../public/icons/drop.png'
+import { useState } from 'react'
 
-const Home: NextPage = () => {
+const Home = () => {
   const { toggleColorMode } = useColorMode()
 
   const bg = useColorModeValue('purple.100', 'gray.900')
@@ -23,13 +26,14 @@ const Home: NextPage = () => {
   const color = useColorModeValue('purple.900', 'gray.100')
   const icon = useColorModeValue(<MoonIcon color='purple.900' />, <SunIcon />)
   const borderColor = useColorModeValue('purple.10', 'gray.200')
+
   return (
     <div>
       <Head>
         <title>Su Ne Kadar?</title>
         <meta
           name='description'
-          content='An application developed for my mum to calculate total water price.'
+          content='An application developed for to calculate total water price.'
         />
       </Head>
 
@@ -59,9 +63,12 @@ const Home: NextPage = () => {
             p='4rem'
             centerContent
           >
-            <Heading size='xl' as='h1' color={color} pb='2rem'>
-              💧
-            </Heading>
+            <Flex mb='2rem' alignItems='center' justify='center'>
+              <Image src={Drop} alt='drop icon' width='50' height='50' />
+              <Heading size='xl' as='h3' color={color}>
+                = {61} ₺
+              </Heading>
+            </Flex>
             <Form />
           </Container>
         </Center>

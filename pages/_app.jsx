@@ -1,8 +1,7 @@
-import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import Head from 'next/head'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider resetCSS={true}>
       <Head>
