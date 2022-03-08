@@ -1,8 +1,8 @@
-import type { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, useColorModeValue } from '@chakra-ui/react'
 import Head from 'next/head'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
+  const bg = useColorModeValue('purple.100', 'gray.900')
   return (
     <ChakraProvider resetCSS={true}>
       <Head>
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           sizes='32x32'
         />
         <link rel='apple-touch-icon' href='/icons/apple-touch-icon.png'></link>
-        <meta name='theme-color' content='#E9D8FD' />
+        <meta name='theme-color' content={bg} />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>

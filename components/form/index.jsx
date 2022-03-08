@@ -10,17 +10,37 @@ import {
   Button,
   useColorModeValue
 } from '@chakra-ui/react'
+import { useStorken } from '../../store'
 
 export default function Form() {
+  const [glassPrice, setGlassPrice] = useStorken('glassPrice')
+  const [plasticPrice, setPlasticPrice] = useStorken('plasticPrice')
+  const [, setTotalPrice] = useStorken('totalPrice')
+
   const inputBgColor = useColorModeValue('white', 'none')
   const buttonColorScheme = useColorModeValue('purple', 'blue')
 
-  const calculatePrice = () => {}
+  const handleGlassPriceChange = (value) => {
+    setGlassPrice(value * 22.5)
+  }
+
+  const handlePlasticPriceChange = (value) => {
+    setPlasticPrice(value * 20)
+  }
+
+  const calculatePrice = () => {
+    setTotalPrice(glassPrice + plasticPrice)
+  }
 
   return (
     <FormControl>
       <FormLabel htmlFor='glass'>Cam Şişe</FormLabel>
-      <NumberInput size='md' defaultValue={1} max={50} mb='2rem'>
+      <NumberInput
+        size='md'
+        max={50}
+        mb='2rem'
+        onChange={handleGlassPriceChange}
+      >
         <NumberInputField id='glass' type='glass' bgColor={inputBgColor} />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -28,7 +48,12 @@ export default function Form() {
         </NumberInputStepper>
       </NumberInput>
       <FormLabel htmlFor='plastic'>Plastik Şişe</FormLabel>
-      <NumberInput size='md' defaultValue={1} max={50} mb='2rem'>
+      <NumberInput
+        size='md'
+        max={50}
+        mb='2rem'
+        onChange={handlePlasticPriceChange}
+      >
         <NumberInputField id='plastic' type='plastic' bgColor={inputBgColor} />
         <NumberInputStepper>
           <NumberIncrementStepper />
