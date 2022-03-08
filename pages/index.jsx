@@ -33,7 +33,7 @@ const Home = () => {
         <title>Su Ne Kadar?</title>
         <meta
           name='description'
-          content='An application developed for to calculate total water price.'
+          content='An application developed to calculate total water price.'
         />
       </Head>
 
