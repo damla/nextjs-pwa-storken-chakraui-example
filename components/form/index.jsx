@@ -6,30 +6,47 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Center,
+  Flex,
   Button,
   useColorModeValue
 } from '@chakra-ui/react'
+import { AddIcon, RepeatIcon } from '@chakra-ui/icons'
 import { useStorken } from '../../store'
 
 export default function Form() {
-  const [glassPrice, setGlassPrice] = useStorken('glassPrice')
-  const [plasticPrice, setPlasticPrice] = useStorken('plasticPrice')
-  const [, setTotalPrice] = useStorken('totalPrice')
+  const [glassCount, setGlassCount, resetGlassCount] = useStorken('glassCount')
+  const [plasticCount, setPlasticCount, resetPlasticCount] =
+    useStorken('plasticCount')
+  const [glassPrice, setGlassPrice, resetGlassPrice] = useStorken('glassPrice')
+  const [plasticPrice, setPlasticPrice, resetPlasticPrice] =
+    useStorken('plasticPrice')
+  const [, setTotalPrice, resetTotalPrice] = useStorken('totalPrice')
 
   const inputBgColor = useColorModeValue('white', 'none')
-  const buttonColorScheme = useColorModeValue('purple', 'blue')
+  const calcButtonColorScheme = useColorModeValue('green', 'green')
+  const calcButtonBg = useColorModeValue('green.500', 'green.50')
+  const resetButtonColorScheme = useColorModeValue('purple', 'blue')
 
   const handleGlassPriceChange = (value) => {
     setGlassPrice(value * 22.5)
+    setGlassCount(value)
   }
 
   const handlePlasticPriceChange = (value) => {
     setPlasticPrice(value * 20)
+    setPlasticCount(value)
   }
 
   const calculatePrice = () => {
     setTotalPrice(glassPrice + plasticPrice)
+  }
+
+  const reset = () => {
+    resetGlassCount()
+    resetPlasticCount()
+    resetGlassPrice()
+    resetPlasticPrice()
+    resetTotalPrice()
   }
 
   return (
@@ -37,9 +54,11 @@ export default function Form() {
       <FormLabel htmlFor='glass'>Cam Şişe</FormLabel>
       <NumberInput
         size='md'
+        min={0}
         max={50}
         mb='2rem'
         onChange={handleGlassPriceChange}
+        value={glassCount}
       >
         <NumberInputField id='glass' type='glass' bgColor={inputBgColor} />
         <NumberInputStepper>
@@ -50,9 +69,11 @@ export default function Form() {
       <FormLabel htmlFor='plastic'>Plastik Şişe</FormLabel>
       <NumberInput
         size='md'
+        min={0}
         max={50}
         mb='2rem'
         onChange={handlePlasticPriceChange}
+        value={plasticCount}
       >
         <NumberInputField id='plastic' type='plastic' bgColor={inputBgColor} />
         <NumberInputStepper>
@@ -60,16 +81,27 @@ export default function Form() {
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
-      <Center>
+      <Flex alignItems='center' justifyContent='space-around'>
         <Button
-          loadingText='Submitting'
-          colorScheme={buttonColorScheme}
+          w='125px'
+          colorScheme={resetButtonColorScheme}
+          variant='solid'
+          onClick={reset}
+        >
+          <RepeatIcon />
+          &nbsp;&nbsp;Sıfırla
+        </Button>
+        <Button
+          w='125px'
+          colorScheme={calcButtonColorScheme}
+          bg={calcButtonBg}
           variant='solid'
           onClick={calculatePrice}
         >
-          ➕&nbsp;Hesapla
+          <AddIcon />
+          &nbsp;&nbsp;Hesapla
         </Button>
-      </Center>
+      </Flex>
     </FormControl>
   )
 }
