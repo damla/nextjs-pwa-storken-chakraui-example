@@ -10,13 +10,12 @@ import {
   Button,
   useColorModeValue
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useStorken } from '../../store'
 
-export default function Form(setTotalPrice) {
-  const [glassPrice, setGlassPrice] = useState(0)
-  const [plasticPrice, setPlasticPrice] = useState(0)
-  const [total, setTotal] = useState(0)
-  // total icin context yap
+export default function Form() {
+  const [glassPrice, setGlassPrice] = useStorken('glassPrice')
+  const [plasticPrice, setPlasticPrice] = useStorken('plasticPrice')
+  const [, setTotalPrice] = useStorken('totalPrice')
 
   const inputBgColor = useColorModeValue('white', 'none')
   const buttonColorScheme = useColorModeValue('purple', 'blue')
@@ -30,7 +29,7 @@ export default function Form(setTotalPrice) {
   }
 
   const calculatePrice = () => {
-    setTotal(glassPrice + plasticPrice)
+    setTotalPrice(glassPrice + plasticPrice)
   }
 
   return (

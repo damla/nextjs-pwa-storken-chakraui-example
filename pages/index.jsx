@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import Image from 'next/image'
 import Head from 'next/head'
 import {
@@ -13,13 +12,14 @@ import {
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import Form from '../components/form'
 import Drop from '../public/icons/drop.png'
-import { useState } from 'react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { useStorken } from '../store'
 
 const Home = () => {
   const { toggleColorMode } = useColorMode()
+  const [totalPrice] = useStorken('totalPrice')
 
   const bg = useColorModeValue('purple.100', 'gray.900')
   const bgContainer = useColorModeValue('purple.50', 'gray.700')
@@ -66,7 +66,7 @@ const Home = () => {
             <Flex mb='2rem' alignItems='center' justify='center'>
               <Image src={Drop} alt='drop icon' width='50' height='50' />
               <Heading size='xl' as='h3' color={color}>
-                = {61} ₺
+                = {totalPrice} ₺
               </Heading>
             </Flex>
             <Form />
