@@ -8,56 +8,70 @@ import {
   NumberDecrementStepper,
   Flex,
   Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
   useColorModeValue
 } from '@chakra-ui/react'
-import { AddIcon, RepeatIcon } from '@chakra-ui/icons'
-import { useStorken } from '../../store'
+import { RepeatIcon, AddIcon } from '@chakra-ui/icons'
+import { useStorken } from '../../data/storken'
+import { useActions } from '../../hooks/useActions'
 
 export default function Form() {
   const [glassCount, setGlassCount, resetGlassCount] = useStorken('glassCount')
   const [plasticCount, setPlasticCount, resetPlasticCount] =
     useStorken('plasticCount')
-  const [glassPrice, setGlassPrice, resetGlassPrice] = useStorken('glassPrice')
-  const [plasticPrice, setPlasticPrice, resetPlasticPrice] =
-    useStorken('plasticPrice')
-  const [, setTotalPrice, resetTotalPrice] = useStorken('totalPrice')
+  const [, , resetTotalPrice] = useStorken('totalPrice')
+  const totalPriceActions = useActions('totalPrice')
 
+  const calcButtonColorScheme = useColorModeValue('green', 'blue')
+  const calcButtonBg = useColorModeValue('green', 'blue')
   const inputBgColor = useColorModeValue('white', 'none')
-  const calcButtonColorScheme = useColorModeValue('green', 'green')
-  const calcButtonBg = useColorModeValue('green.500', 'green.50')
   const resetButtonColorScheme = useColorModeValue('purple', 'blue')
 
-  const handleGlassPriceChange = (value) => {
-    setGlassPrice(value * 22.5)
+  const handleGlassCountChange = (value) => {
     setGlassCount(value)
   }
 
-  const handlePlasticPriceChange = (value) => {
-    setPlasticPrice(value * 20)
+  const handlePlasticCountChange = (value) => {
     setPlasticCount(value)
-  }
-
-  const calculatePrice = () => {
-    setTotalPrice(glassPrice + plasticPrice)
   }
 
   const reset = () => {
     resetGlassCount()
     resetPlasticCount()
-    resetGlassPrice()
-    resetPlasticPrice()
     resetTotalPrice()
   }
+  // REFACTOR: form elemanini tek eleman olarak yap
 
   return (
     <FormControl>
-      <FormLabel htmlFor='glass'>Cam Şişe</FormLabel>
+      <Flex
+        alignItems='center'
+        justifyContent='space-between'
+        w='100'
+        mb='0.5rem'
+      >
+        <FormLabel htmlFor='glass' onClick={() => console.log('test')}>
+          Cam Şişe
+        </FormLabel>
+        {/* <InputGroup w='100'>
+          <InputLeftElement color='purple'>₺</InputLeftElement>
+          <Input
+            placeholder='22.5'
+            htmlSize={3}
+            w='auto'
+            bg='white'
+            type='number'
+          />
+        </InputGroup> */}
+      </Flex>
       <NumberInput
         size='md'
         min={0}
         max={50}
         mb='2rem'
-        onChange={handleGlassPriceChange}
+        onChange={handleGlassCountChange}
         value={glassCount}
       >
         <NumberInputField id='glass' type='glass' bgColor={inputBgColor} />
@@ -66,13 +80,32 @@ export default function Form() {
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
-      <FormLabel htmlFor='plastic'>Plastik Şişe</FormLabel>
+      <Flex
+        alignItems='center'
+        justifyContent='space-between'
+        w='100'
+        mb='0.5rem'
+      >
+        <FormLabel htmlFor='plastic' onClick={() => console.log('test')}>
+          Plastik Şişe
+        </FormLabel>
+        {/* <InputGroup w='100'>
+          <InputLeftElement color='purple'>₺</InputLeftElement>
+          <Input
+            placeholder='20'
+            htmlSize={3}
+            w='auto'
+            bg='white'
+            type='number'
+          />
+        </InputGroup> */}
+      </Flex>
       <NumberInput
         size='md'
         min={0}
         max={50}
         mb='2rem'
-        onChange={handlePlasticPriceChange}
+        onChange={handlePlasticCountChange}
         value={plasticCount}
       >
         <NumberInputField id='plastic' type='plastic' bgColor={inputBgColor} />
@@ -96,7 +129,7 @@ export default function Form() {
           colorScheme={calcButtonColorScheme}
           bg={calcButtonBg}
           variant='solid'
-          onClick={calculatePrice}
+          onClick={() => totalPriceActions.setTotal()}
         >
           <AddIcon />
           &nbsp;&nbsp;Hesapla

@@ -4158,6 +4158,11 @@ sourcemap-codec@^1.4.8:
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
 
+storken-actions@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/storken-actions/-/storken-actions-1.0.3.tgz#13f1ad5f396437c865f5a70fc89a860b25f8528a"
+  integrity sha512-OBLHHSvkzlrkRW5FZvXZ37/cVeHvREe8jM4brpzYW7YlnJ9aHNnqz4f55yNz6AgsqlrpTJqI1U3YlJllj1V5Rw==
+
 storken@^2.0.11:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/storken/-/storken-2.0.11.tgz#18fca84027d5d2898d43ad9a2d177d63f9965195"
