@@ -1,10 +1,11 @@
 import { ChakraProvider, useColorModeValue } from '@chakra-ui/react'
 import Head from 'next/head'
+import { theme } from '../styles/theme'
 
 function MyApp({ Component, pageProps }) {
   const bg = useColorModeValue('purple.100', 'gray.900')
   return (
-    <ChakraProvider resetCSS={true}>
+    <ChakraProvider resetCSS={true} theme={theme}>
       <Head>
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
