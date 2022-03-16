@@ -15,7 +15,7 @@ import {
 import Form from '../components/form'
 import Drop from '../public/icons/drop.png'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { useStorken } from '../store'
+import { useStorken } from '../data/storken'
 
 const Home = () => {
   const { toggleColorMode } = useColorMode()
@@ -66,7 +66,7 @@ const Home = () => {
             <Flex mb='2rem' alignItems='center' justify='center'>
               <Image src={Drop} alt='drop icon' width='50' height='50' />
               <Heading size='xl' as='h3' color={color}>
-                = {totalPrice} ₺
+                = {totalPrice}&nbsp;₺
               </Heading>
             </Flex>
             <Form />
