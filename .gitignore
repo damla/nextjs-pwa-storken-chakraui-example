@@ -6,6 +6,11 @@
 .pnp.js
 .idea
 
+# PWA
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+
 # testing
 /coverage
 
