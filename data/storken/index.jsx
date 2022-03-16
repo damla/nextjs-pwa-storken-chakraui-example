@@ -1,6 +1,6 @@
 import { create as createStore } from 'storken'
 import Actions from 'storken-actions'
-import { totalPrice } from './actions'
+import { totalPriceActions as totalPrice } from './actions'
 
 export const [useStorken, getStorken] = createStore({
   initialValues: {

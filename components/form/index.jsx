@@ -8,9 +8,9 @@ import {
   NumberDecrementStepper,
   Flex,
   Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
+  // Input,
+  // InputGroup,
+  // InputLeftElement,
   useColorModeValue
 } from '@chakra-ui/react'
 import { RepeatIcon, AddIcon } from '@chakra-ui/icons'
@@ -23,11 +23,7 @@ export default function Form() {
     useStorken('plasticCount')
   const [, , resetTotalPrice] = useStorken('totalPrice')
   const totalPriceActions = useActions('totalPrice')
-
-  const calcButtonColorScheme = useColorModeValue('green', 'blue')
-  const calcButtonBg = useColorModeValue('green', 'blue')
   const inputBgColor = useColorModeValue('white', 'none')
-  const resetButtonColorScheme = useColorModeValue('purple', 'blue')
 
   const handleGlassCountChange = (value) => {
     setGlassCount(value)
@@ -37,12 +33,11 @@ export default function Form() {
     setPlasticCount(value)
   }
 
-  const reset = () => {
+  const resetValues = () => {
     resetGlassCount()
     resetPlasticCount()
     resetTotalPrice()
   }
-  // REFACTOR: form elemanini tek eleman olarak yap
 
   return (
     <FormControl>
@@ -115,20 +110,13 @@ export default function Form() {
         </NumberInputStepper>
       </NumberInput>
       <Flex alignItems='center' justifyContent='space-around'>
-        <Button
-          w='125px'
-          colorScheme={resetButtonColorScheme}
-          variant='solid'
-          onClick={reset}
-        >
+        <Button w='125px' variant='reset' onClick={resetValues}>
           <RepeatIcon />
           &nbsp;&nbsp;Sıfırla
         </Button>
         <Button
           w='125px'
-          colorScheme={calcButtonColorScheme}
-          bg={calcButtonBg}
-          variant='solid'
+          variant='calculate'
           onClick={() => totalPriceActions.setTotal()}
         >
           <AddIcon />
