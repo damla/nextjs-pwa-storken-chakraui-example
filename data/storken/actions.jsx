@@ -1,6 +1,6 @@
 import { getStorken } from './index.jsx'
 
-export const totalPrice = {
+export const totalPriceActions = {
   actions: () => ({
     setTotal: () =>
       getStorken('glassCount') * 22.5 + getStorken('plasticCount') * 20
