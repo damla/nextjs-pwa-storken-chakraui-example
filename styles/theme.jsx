@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
-import { ButtonStyles as Button } from './components/ButtonStyles'
+import { ButtonStyles as Button } from './components/buttonStyles'
 
 const config = {
   initialColorMode: 'light',
